@@ -20,29 +20,29 @@ public class Retirement {
 		Scanner input = new Scanner(System.in); // Create a Scanner object
 
 		System.out.print("Enter your years to work: ");
-		double MonthsWork=input.nextDouble()*12; 
+		double MonthsWork = input.nextDouble() * 12; 
 		
 		System.out.print("Enter your annual rate of return as a decimal: ");
-		double MonthlyIncomeReturn=1+input.nextDouble()/12.;
+		double MonthlyIncomeReturn = 1 + input.nextDouble() / 12.;
 		
 		System.out.print("To calculate your payout, please enter the number of years you will be retired (Avg Life expectancy 87): ");
-		double MonthsRetired=input.nextDouble()*12.;
+		double MonthsRetired = input.nextDouble() * 12.;
 		
 		System.out.print("Enter your annual payout return as a decimal: ");
-		double MonthlyPayoutReturn=1+input.nextDouble()/12.; 
+		double MonthlyPayoutReturn = 1 + input.nextDouble() / 12.; 
 		
 		System.out.print("Enter your required MONTHLY income (min 75% of your current monthly income): ");
-		double ReqIncome=input.nextDouble();
+		double ReqIncome = input.nextDouble();
 		
 		System.out.print("Lastly, enter your Monthly SSI (if you earned the maximum income, and retired at age 65, Monthly SSI is $2,642): ");
-		double Difference=ReqIncome-input.nextDouble(); 
+		double Difference = ReqIncome - input.nextDouble(); 
 		
 		input.close();
 		
-		double TotalAmountSaved=Math.ceil(100*(Math.pow(MonthlyPayoutReturn,MonthsRetired)-1)*Difference/(MonthlyPayoutReturn-1)/(Math.pow(MonthlyPayoutReturn,MonthsRetired)))/100;
-		double MonthlySavings = Math.ceil(100 * (TotalAmountSaved/((Math.pow(MonthlyIncomeReturn,MonthsWork)-1)/(MonthlyIncomeReturn-1)))) / 100;
+		double TotalAmountSaved = Math.ceil(100 * (Math.pow(MonthlyPayoutReturn, MonthsRetired) - 1) * Difference / (MonthlyPayoutReturn - 1) / (Math.pow(MonthlyPayoutReturn, MonthsRetired))) / 100;
+		double MonthlySavings = Math.ceil(100 * (TotalAmountSaved / ((Math.pow(MonthlyIncomeReturn, MonthsWork) - 1) / (MonthlyIncomeReturn - 1)))) / 100;
 
-		System.out.println("You need to save "+MonthlySavings+" per month (the total amount you need saved is "+TotalAmountSaved+").");
+		System.out.println("You need to save " + MonthlySavings + " per month (the total amount you need saved is " + TotalAmountSaved + ").");
 	}
-	}
+}
 
