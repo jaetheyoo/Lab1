@@ -13,8 +13,11 @@
  * 		double Difference: the monthly difference you need to withdraw, calculated from ReqIncome and MonthlySSI, an input
  * 		double TotalAmountSaved: the total amount saved based on MonthsRetired, MonthlyPayoutReturn, and Difference rounded to 2 decimals
  * 		double MonthlySavings: the amount the user needs to save each month based on MonthsWork, MonthlyIncomeReturn, and TotalAmountSaved
+ * 		DecimalFormat formatter: a decimal format with commas and precision to 2 places
  */
 import java.util.Scanner;
+import java.text.DecimalFormat;
+
 public class Retirement {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in); // Create a Scanner object
@@ -39,10 +42,12 @@ public class Retirement {
 		
 		input.close();
 		
-		double TotalAmountSaved = Math.ceil(100 * (Math.pow(MonthlyPayoutReturn, MonthsRetired) - 1) * Difference / (MonthlyPayoutReturn - 1) / (Math.pow(MonthlyPayoutReturn, MonthsRetired))) / 100;
-		double MonthlySavings = Math.ceil(100 * (TotalAmountSaved / ((Math.pow(MonthlyIncomeReturn, MonthsWork) - 1) / (MonthlyIncomeReturn - 1)))) / 100;
-
-		System.out.println("You need to save " + MonthlySavings + " per month (the total amount you need saved is " + TotalAmountSaved + ").");
+		double TotalAmountSaved = (Math.pow(MonthlyPayoutReturn, MonthsRetired) - 1) * Difference / (MonthlyPayoutReturn - 1) / (Math.pow(MonthlyPayoutReturn, MonthsRetired));
+		double MonthlySavings = TotalAmountSaved / ((Math.pow(MonthlyIncomeReturn, MonthsWork) - 1) / (MonthlyIncomeReturn - 1));
+		
+		DecimalFormat formatter = new DecimalFormat("#,###.00");		
+		
+		System.out.println("You need to save $" +  formatter.format(MonthlySavings) + " per month (the total amount you need saved is $" + formatter.format(TotalAmountSaved) + ").");
 	}
 }
 
